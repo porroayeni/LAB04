@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestor de publicaciones</title>
+    <style>
+        body { font-family: Arial; max-width: 640px; margin: 2rem auto; }
+        form { display: grid; gap: .5rem; margin-bottom: 1rem; }
+        
+        .post { border: 1px solid #ddd; border-radius: 6px; padding: 0 1rem; margin: .5rem 0; cursor: pointer; }
+        .post:hover { background-color: #fcfcfc; }
+        .nuevo { border-color: seagreen; background: #f0fff4; }
+        
+        /* Estilos de errores y comentarios (Actividades 2 y 3) */
+        .error { color: crimson; margin: 0; font-size: 0.9em; }
+        .comentarios { background: #f9f9f9; padding: 10px; margin-top: 10px; font-size: 0.9em; border-top: 1px solid #eee; display: none; }
+        .comentario-item { margin-bottom: 8px; padding-bottom: 8px; border-bottom: 1px dashed #ccc; }
+    </style>
+</head>
+<body>
+    <h1>Gestor de publicaciones</h1>
+
+    <h2>Listar (GET)</h2>
+    <form id="form-buscar">
+        <label>Usuario (1 a 10)
+            <input type="number" id="input-usuario" min="1" max="10" value="1">
+        </label>
+        
+        <!-- Actividad 2: Límite y Filtro -->
+        <label>Límite de resultados:
+            <select id="input-limite">
+                <option value="5">5</option>
+                <option value="10">10</option>
+                <option value="20">20</option>
+            </select>
+        </label>
+        <label>Filtrar por título:
+            <input type="text" id="input-filtro" placeholder="Escribe para buscar...">
+        </label>
+        
+        <button type="submit">Listar publicaciones</button>
+    </form>
+
+    <h2>Nueva publicación (POST)</h2>
+    <form id="form-crear">
+        <input type="text" id="input-titulo" placeholder="Título" required>
+        <!-- Actividad 3: Mensaje de error para título -->
+        <p id="error-titulo" class="error"></p>
+        
+        <textarea id="input-cuerpo" rows="3" placeholder="Contenido" required></textarea>
+        <!-- Actividad 3: Mensaje de error para cuerpo -->
+        <p id="error-cuerpo" class="error"></p>
+        
+        <button type="submit" id="btn-crear">Publicar</button>
+    </form>
+
+    <!-- Actividad 3: Formulario para enviar comentarios con FormData -->
+    <h2>Comentar Publicación (POST)</h2>
+    <form id="form-comentar">
+        <input type="number" name="postId" placeholder="ID del Post (Ej: 1)" required>
+        <input type="text" name="name" placeholder="Tu Nombre" required>
+        <input type="email" name="email" placeholder="Tu Correo" required>
+        <textarea name="body" rows="2" placeholder="Escribe tu comentario" required></textarea>
+        <button type="submit" id="btn-comentar">Enviar Comentario</button>
+    </form>
+
+    <p id="estado"></p>
+    <section id="lista"></section>
+
+    <script src="app.js"></script>
+</body>
+</html>

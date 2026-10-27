@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Actividad 1 - Formulario GET</title>
+</head>
+<body>
+    <h2>Formulario GET</h2>
+    
+    <!-- El formulario se envía a la misma página usando action="" -->
+    <form method="get" action="">
+        <input type="text" name="nombre" placeholder="Ingresa un nombre" required>
+        <input type="text" name="apellido" placeholder="Ingresa un apellido" required>
+        <button type="submit">Enviar datos</button>
+    </form>
+
+    <h3 id="resultado" style="color: blue;"></h3>
+
+    <script>
+        // Leer los valores de la URL con URLSearchParams
+        const parametros = new URLSearchParams(location.search);
+        const valorNombre = parametros.get('nombre');
+        const valorApellido = parametros.get('apellido');
+
+        // Mostrar en pantalla si existen valores
+        if (valorNombre && valorApellido) {
+            document.getElementById('resultado').textContent = 
+                `Valores recibidos: Nombre = ${valorNombre}, Apellido = ${valorApellido}`;
+        }
+    </script>
+</body>
+</html>
